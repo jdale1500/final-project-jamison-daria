@@ -28,12 +28,7 @@ public class Main {
 
     //populate each data structure
     int size = Array.getLength(Main.flashcards);
-    /*
-    FlashCard currentFlashCard = Main.flashcards[i];
-      likedListFlashCards.add(currentFlashCard);
-      stackFlashCards.push(currentFlashCard);
-      hashMapFlashCards.put(currentFlashCard.getQuestion(), currentFlashCard.getAnswer());
-     */
+    //shuffle
     FlashCard[] arrForList = shuffleArray(flashcards);
     FlashCard[] arrForStack = shuffleArray(flashcards);
     FlashCard[] arrForHashMap = shuffleArray(flashcards);
@@ -42,27 +37,48 @@ public class Main {
       stackFlashCards.push(arrForStack[i]);
       hashMapFlashCards.put(arrForHashMap[i].getQuestion(), arrForHashMap[i].getAnswer());
     }
-    //shuffle
-
+    Scanner keyboard = new Scanner(System.in);
+    String answer = "";
     //read out flash cards
     //read linkedlist first
     for( int i =0; i < likedListFlashCards.size(); i++) {
       FlashCard current = likedListFlashCards.get(i);
       System.out.println(current.getQuestion());
-      System.out.println(current.getAnswer());
+      System.out.println("Enter y/n: ");
+      answer = keyboard.nextLine();
+      if (answer.equals(current.getAnswer())) {
+        System.out.println("CORRECT");
+      } else {
+        System.out.println("WRONG, you need to study more");
+      }
     }
     //stack
     while(!stackFlashCards.isEmpty()) {
       FlashCard current = stackFlashCards.pop();
       System.out.println(current.getQuestion());
-      System.out.println(current.getAnswer());
+      System.out.println("Enter y/n: ");
+      answer = keyboard.nextLine();
+      if (answer.equals(current.getAnswer())) {
+        System.out.println("CORRECT");
+      } else {
+        System.out.println("WRONG, you need to study more");
+      }
     }
 
     //hashmap
     for(String key: hashMapFlashCards.keySet()) {
       System.out.println(key);
-      System.out.println(hashMapFlashCards.get(key));
+      System.out.println("Enter y/n: ");
+      answer = keyboard.nextLine();
+      if (answer.equals(hashMapFlashCards.get(key))) {
+        System.out.println("CORRECT");
+      } else {
+        System.out.println("WRONG, you need to study more");
+      }
     }
+
+    System.out.println("GOOD WORK STUDYING");
+    keyboard.close();
   }
 
   private static FlashCard[] shuffleArray(FlashCard[] arr) {
