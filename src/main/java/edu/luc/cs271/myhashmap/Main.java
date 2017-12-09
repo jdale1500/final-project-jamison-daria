@@ -26,12 +26,13 @@ public class Main {
     Stack<FlashCard> stackFlashCards = new Stack<>();
     HashMap<String, String> hashMapFlashCards = new HashMap<>();
 
-    //populate each data structure
+    int correctAnswers = 0, totalAnswers = 0;
     int size = Array.getLength(Main.flashcards);
     //shuffle
     FlashCard[] arrForList = shuffleArray(flashcards);
     FlashCard[] arrForStack = shuffleArray(flashcards);
     FlashCard[] arrForHashMap = shuffleArray(flashcards);
+    //populate each data structure
     for (int i =0; i < size; i++) {
       likedListFlashCards.add(arrForList[i]);
       stackFlashCards.push(arrForStack[i]);
@@ -48,9 +49,11 @@ public class Main {
       answer = keyboard.nextLine();
       if (answer.equals(current.getAnswer())) {
         System.out.println("CORRECT");
+        correctAnswers++;
       } else {
         System.out.println("WRONG, you need to study more");
       }
+      totalAnswers++;
     }
     //stack
     while(!stackFlashCards.isEmpty()) {
@@ -60,9 +63,11 @@ public class Main {
       answer = keyboard.nextLine();
       if (answer.equals(current.getAnswer())) {
         System.out.println("CORRECT");
+        correctAnswers++;
       } else {
         System.out.println("WRONG, you need to study more");
       }
+      totalAnswers++;
     }
 
     //hashmap
@@ -72,12 +77,14 @@ public class Main {
       answer = keyboard.nextLine();
       if (answer.equals(hashMapFlashCards.get(key))) {
         System.out.println("CORRECT");
+        correctAnswers++;
       } else {
         System.out.println("WRONG, you need to study more");
       }
+      totalAnswers++;
     }
 
-    System.out.println("GOOD WORK STUDYING");
+    System.out.println("GOOD WORK STUDYING you got " + correctAnswers + " out of " + totalAnswers + " correct");
     keyboard.close();
   }
 
