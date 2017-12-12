@@ -4,9 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.NoSuchElementException;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +31,6 @@ public class TestMyHashMap {
     } catch (final NoSuchElementException ex) {
       // exception occurred => all good
     }
-
   }
 
   @Test
@@ -78,5 +75,4 @@ public class TestMyHashMap {
     assertEquals(2, list.size());
     assertEquals(Arrays.asList(value2, value1), list);
   }
-
 }
