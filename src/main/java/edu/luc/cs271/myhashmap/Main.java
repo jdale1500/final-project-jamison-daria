@@ -22,13 +22,16 @@ public class Main {
   };
 
   public static void main(final String[] args) throws InterruptedException {
+    //own implementation of stack
     LinkedStack<FlashCard> likedListFlashCards = new LinkedStack<>();
+    //used with a standard library stack
     Stack<FlashCard> stackFlashCards = new Stack<>();
+    //hashmap to contain questions/answer as well
     HashMap<String, String> hashMapFlashCards = new HashMap<>();
-
+    //scoreboard data
     int correctAnswers = 0, totalAnswers = 0;
     int size = Array.getLength(Main.flashcards);
-    //shuffle
+    //shuffle three arrays so each data type has a different order
     FlashCard[] arrForList = shuffleArray(flashcards);
     FlashCard[] arrForStack = shuffleArray(flashcards);
     FlashCard[] arrForHashMap = shuffleArray(flashcards);
@@ -38,6 +41,7 @@ public class Main {
       stackFlashCards.push(arrForStack[i]);
       hashMapFlashCards.put(arrForHashMap[i].getQuestion(), arrForHashMap[i].getAnswer());
     }
+    //setup for user i/o
     Scanner keyboard = new Scanner(System.in);
     String answer = "";
     //read out flash cards
@@ -88,13 +92,20 @@ public class Main {
     keyboard.close();
   }
 
-  private static FlashCard[] shuffleArray(FlashCard[] arr) {
+  /**
+   * made public for test case
+   * @param arr
+   * @return
+   */
+  public static FlashCard[] shuffleArray(FlashCard[] arr) {
     FlashCard[] result = new FlashCard[flashcards.length];
+    //copy a new array so that we don't modify the original
     System.arraycopy(flashcards, 0, result, 0, flashcards.length);
     int n = result.length;
     Random random = new Random();
     random.nextInt();
     for (int i = 0; i < n; i++){
+      //calculate a random index, then swap the values
       int change = i + random.nextInt(n - i);
       FlashCard temp = result[i];
       result[i] = result[change];
