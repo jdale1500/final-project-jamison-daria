@@ -22,7 +22,7 @@ public class Main {
   };
 
   public static void main(final String[] args) throws InterruptedException {
-    LinkedList<FlashCard> likedListFlashCards = new LinkedList<>();
+    LinkedStack<FlashCard> likedListFlashCards = new LinkedStack<>();
     Stack<FlashCard> stackFlashCards = new Stack<>();
     HashMap<String, String> hashMapFlashCards = new HashMap<>();
 
@@ -34,7 +34,7 @@ public class Main {
     FlashCard[] arrForHashMap = shuffleArray(flashcards);
     //populate each data structure
     for (int i =0; i < size; i++) {
-      likedListFlashCards.add(arrForList[i]);
+      likedListFlashCards.push(arrForList[i]);
       stackFlashCards.push(arrForStack[i]);
       hashMapFlashCards.put(arrForHashMap[i].getQuestion(), arrForHashMap[i].getAnswer());
     }
@@ -42,8 +42,8 @@ public class Main {
     String answer = "";
     //read out flash cards
     //read linkedlist first
-    for( int i =0; i < likedListFlashCards.size(); i++) {
-      FlashCard current = likedListFlashCards.get(i);
+    while (!likedListFlashCards.isEmpty()) {
+      FlashCard current = likedListFlashCards.pop();
       System.out.println(current.getQuestion());
       System.out.println("Enter y/n: ");
       answer = keyboard.nextLine();
